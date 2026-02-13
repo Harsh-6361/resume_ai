@@ -1,0 +1,11 @@
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+
+export function getModel() {
+    return genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+}
+
+export function cleanJsonResponse(text: string): string {
+    return text.replace(/```json/g, "").replace(/```/g, "").trim();
+}
